@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "575079302441",
+    "firebase_url": "https://easy-deliverys.firebaseio.com",
+    "project_id": "easy-deliverys",
+    "storage_bucket": "easy-deliverys.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575079302441:android:3ab251b31e258237b8e338",
+        "android_client_info": {
+          "package_name": "org.easydeliverys.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "575079302441-o5ooj6emohvk1l7ubae6ujd3itqtqn24.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUYnl3nvn3jmQbr-CvOnqK7IxK5CwpeAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "575079302441-o5ooj6emohvk1l7ubae6ujd3itqtqn24.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
