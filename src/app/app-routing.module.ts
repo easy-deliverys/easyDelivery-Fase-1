@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
-import { NativeScriptRouterModule } from "@nativescript/angular";
-
+import { NativeScriptRouterModule } from "nativescript-angular";
 
 const routes: Routes = [
-   { path: "", redirectTo: "/", pathMatch: "full" },
+   { path: "", redirectTo: "/signin", pathMatch: "full" },
+   { path: "signin", loadChildren: () => import('./signin/signin.module').then(m => m.SignInModule)}
 ];
 
 @NgModule({
