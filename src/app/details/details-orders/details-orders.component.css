@@ -1,0 +1,136 @@
+.title {
+    font-size: 20; 
+    margin-left: 30; 
+    margin-top: -3;
+}
+
+.subtitle {
+    font-size: 20;
+    margin-left: -178;
+    margin-top: -20;
+}
+
+.informations{
+    font-size: 15;
+     margin-top: 20; 
+     margin: 15; 
+     margin-bottom: 3;
+}
+.card-view1{
+    margin: 0;
+    background-color: #F8F8F8;
+    color: #000000;
+}
+.card-view2{
+    background-color: white; 
+    margin: 0;
+    font-size: 12;
+}
+
+.card-view3{
+    margin: 15; 
+    margin-top: 5;
+}
+.label-info{
+    text-align:right;
+}
+
+.subtitlefor {
+    font-size: 20;
+    margin-left: -160;
+    margin-top: -19;
+}
+.directions{
+    font-size: 15; 
+    margin-left: 30; 
+    margin-top: -15;
+}
+
+.icons{
+    font-size: 20; 
+    margin-top: 1; 
+    margin-left: 5;
+    color: #1A83FF;
+}
+
+
+
+.ready {
+    margin: 30 10 10 10;
+    border-radius: 15;
+    padding: 10;
+    background-color: white;
+}
+.r-name {
+    color: #20334B; 
+    margin: 0;
+}
+
+.r-phone { 
+    margin: 0;
+    color: #909090; 
+}
+
+
+.icon_menu, .state  {
+    font-size: 20;
+    color: white;
+    vertical-align: middle;
+}
+
+.state {
+   text-align: left;
+}
+
+
+.btn-call{
+    background-color: #CDE4FE;
+    color: #1A83FF;
+    font-size: 15;
+    border-width: 1;
+    border-radius: 8%;
+    padding: 10px 24px;
+    margin-left: 30; 
+    width:70; 
+    height:85px;
+    margin-top: -1;
+}
+
+
+.btn-whatsapp{
+    background-color: #CEFECD;
+    color: #12B822;
+    font-size: 15;
+    border-radius: 8%;
+    padding: 10px 24px;
+    width:103; 
+    height:85px;
+    margin-top: -1;
+    margin-left: 3;
+}
+.btn-delivery{
+    color: #1A83FF;
+    background-color: #CDE4FE;
+    font-size: 20; 
+    text-align: center; 
+    font-weight: 600;
+    padding: 10;
+}
+
+.btn-delivered{
+    color: #FF511A;
+    background-color: #FEEDCD;
+    font-size: 20; 
+    text-align: center; 
+    font-weight: 600;
+    padding: 10;
+}
+
+.btn-received{
+    color: #12B822;
+    background-color: #CEFECD;
+    font-size: 20; 
+    text-align: center; 
+    font-weight: 600;
+    padding: 10;
+}
