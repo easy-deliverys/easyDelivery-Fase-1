@@ -2,7 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NativeScriptCommonModule } from 'nativescript-angular/common';
 import { SignInRoutingModule } from './signin.routing'
 import { SignInComponent } from './signin.component';
-import { ActionBar } from '../actionBar/actionBar.component'
+import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 
 @NgModule({
     schemas: [
@@ -10,10 +10,11 @@ import { ActionBar } from '../actionBar/actionBar.component'
     ],
     imports: [
         NativeScriptCommonModule,
-        SignInRoutingModule
+        SignInRoutingModule,
+        NativeScriptFormsModule
     ],
     exports: [],
-    declarations: [SignInComponent, ActionBar],
+    declarations: [SignInComponent],
     providers: [],
 })
 export class SignInModule { }
