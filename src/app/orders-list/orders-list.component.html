@@ -2,8 +2,8 @@
     <StackLayout>
         <GridLayout rows="*" columns="50, *,auto, auto">
             <label text="&#xf0c9;" row="0" col="0" class="fa icon_menu" (tap)="openMenu()"></label>
-            <label text="{{active ? 'Activo': 'Ocupado'}}" row="0" col="2" class="r-kufi state"></label>
-            <Switch col="3" row="0" text="hola" checked="{{active}}" color="{{ active ? 'limegreen' : 'dimgray'}}" (checkedChange)="toggle($event)" backgroundColor="white"></Switch>
+            <label text="{{active ? 'Disponible': 'Ocupado'}}" row="0" col="2" class="r-kufi state"></label>
+            <Switch col="3" row="0" checked="{{active}}" color="{{ active ? 'limegreen' : 'dimgray'}}" (checkedChange)="toggle($event)" backgroundColor="white"></Switch>
         </GridLayout>
     </StackLayout> 
 </ActionBar>
@@ -28,7 +28,7 @@
         </StackLayout>
         <StackLayout row="1" col="0" class="title-list">
             <Label text="Lista de pedidos" textWrap="true" class="t-list"></Label>
-            <Label text="{{listOrders.length}} nuevos" textWrap="true" class="s-list"></Label>
+            <Label text="{{countNuevos}} nuevos" textWrap="true" class="s-list"></Label>
         </StackLayout>
         <RadListView row="2" col="0" [items]="listOrders" separatorColor="white">
             <ng-template  tkListItemTemplate let-item="item" let-odd="odd" let-even="even">

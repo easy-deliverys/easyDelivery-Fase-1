@@ -4,21 +4,28 @@ import * as firebase from "nativescript-plugin-firebase/app";
 import { Orders } from '~/models/orders.model';
 
 @Injectable({providedIn: 'root'})
-export class listOrdersService {
+export class OrdersService {
     docRef: firestore.CollectionReference;
+    public static list: Orders[] = [];
     constructor() {
         this.docRef = firebase.firestore().collection("valledupar - CO/pedidos/lista");
     }
 
     async watchListOrders(callback: Function) {
         this.docRef.onSnapshot({includeMetadataChanges: true},(snap: firestore.QuerySnapshot) => {
-            let list: Orders[] = [];
+            OrdersService.list = [];
             snap.forEach( item => {
                 let data = <Orders>item.data();
                 data.id = item.id;
-                list.push(data);
+                OrdersService.list.push(data);
             });
-            callback(list);
+            callback(OrdersService.list);
+        }, error => callback(error));
+    }
+
+    async findOrder(id: string, callback: Function) {
+        this.docRef.doc(id).onSnapshot({includeMetadataChanges: true},(snap: firestore.DocumentSnapshot) => {
+            callback(<Orders>snap.data())
         }, error => callback(error));
     }
 }

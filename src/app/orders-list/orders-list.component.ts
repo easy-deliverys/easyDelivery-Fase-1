@@ -1,10 +1,11 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { MenuService } from '../menu.service';
 import { EventData } from 'tns-core-modules/ui/page';
-import { ObservableArray } from "tns-core-modules";
+import { ObservableArray, Observable } from "tns-core-modules";
 import { Switch } from 'tns-core-modules/ui/switch';
-import { listOrdersService } from '~/services/list-orders.service';
+import { OrdersService } from '~/services/orders.service';
 import { Orders } from '~/models/orders.model';
+
 
 @Component({
 	selector: 'orders-list',
@@ -15,18 +16,22 @@ import { Orders } from '~/models/orders.model';
 export class OrdersListComponent implements OnInit {
 
 	active: boolean = false;
+	countNuevos: number = 0;
 	listOrders = new ObservableArray<Orders>();
 	constructor(
 		private menuService: MenuService,
-		private orderService: listOrdersService
+		private orderService: OrdersService,
+		private NgZone: NgZone
 	) {
-		
 	}
 
 	async ngOnInit() {
 		this.orderService.watchListOrders((Response: Orders[])=>{
 			this.listOrders.splice(0, this.listOrders.length);
 			this.listOrders.push(Response.filter(item => item.realizando === false));
+			this.NgZone.run(item => {
+				this.countNuevos = this.listOrders.length;
+			});
 		});
 	}
 
