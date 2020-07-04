@@ -1,2 +1,42 @@
 <!-- https://docs.nativescript.org/angular/core-concepts/angular-navigation.html#page-router-outlet -->
-<page-router-outlet></page-router-outlet>
+<RadSideDrawer tkExampleTitle tkToggleNavButton gesturesEnabled="false">
+    <GridLayout tkDrawerContent rows="160, *,60" class="sideStackLayout">
+        <StackLayout row="0" class="sideTitleStackLayout">
+            <img src="res://easy_logo">
+        </StackLayout>
+        <ScrollView row="1">
+            <StackLayout class="sideStackLayout">
+                <GridLayout rows="*" columns="40, *">
+                    <Label text="&#xf015;" class="fa  ico" row="0" col="0"></Label>
+                    <Label text="Home" class="n-medium item" row="0" col="1"></Label>
+                </GridLayout>
+                <GridLayout rows="*" columns="40, *">
+                    <Label text="&#xf2be;" class="fa  ico" row="0" col="0"></Label>
+                    <Label text="Perfil" class="n-medium item" row="0" col="1"></Label>
+                </GridLayout>
+                <GridLayout rows="*" columns="40, *">
+                    <Label text="&#xf017;" class="fa  ico" row="0" col="0"></Label>
+                    <Label text="Pedido en curso" class="n-medium item" row="0" col="1"></Label>
+                </GridLayout>
+                <GridLayout rows="*" columns="40, *">
+                    <Label text="&#xf046;" class="fa  ico" row="0" col="0"></Label>
+                    <Label text="Pedidos realizados" class="n-medium item" row="0" col="1"></Label>
+                </GridLayout>
+                <GridLayout rows="*" columns="40, *">
+                    <Label text="&#xf09d;" class="fa ico" row="0" col="0"></Label>
+                    <Label text="Medios de pago" class="n-medium item" row="0" col="1"></Label>
+                </GridLayout>
+                <GridLayout rows="*" columns="40, *">
+                    <Label text="&#xf00d;" class="fa ico" row="0" col="0"></Label>
+                    <Label text="Cerrar sesión" class="n-medium item" row="0" col="1"></Label>
+                </GridLayout>
+            </StackLayout>
+        </ScrollView>
+        <StackLayout class="bottom-button" orientation="horizontal" row="2" width="100%" (tap)="onCloseDrawerTap()">
+            <label text="Cerrar menu" verticalAlignment="center" class="r-kufi btn-label c-blue" width="100%"></label>
+        </StackLayout>
+    </GridLayout>
+    <StackLayout tkMainContent>
+        <page-router-outlet></page-router-outlet>
+    </StackLayout>
+</RadSideDrawer>

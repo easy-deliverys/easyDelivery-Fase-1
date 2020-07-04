@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { firestore } from "nativescript-plugin-firebase/firebase";
 import * as firebase from "nativescript-plugin-firebase/app";
 import { Orders } from '~/models/orders.model';
-import { ThrowStmt } from '@angular/compiler';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class OrdersService {
     docRef: firestore.CollectionReference;
     public static list: Orders[] = [];
@@ -13,9 +12,9 @@ export class OrdersService {
     }
 
     async watchListOrders(callback: Function) {
-        this.docRef.onSnapshot({ includeMetadataChanges: true }, (snap: firestore.QuerySnapshot) => {
+        this.docRef.onSnapshot({includeMetadataChanges: true},(snap: firestore.QuerySnapshot) => {
             OrdersService.list = [];
-            snap.forEach(item => {
+            snap.forEach( item => {
                 let data = <Orders>item.data();
                 data.id = item.id;
                 OrdersService.list.push(data);
@@ -25,7 +24,7 @@ export class OrdersService {
     }
 
     async findOrder(id: string, callback: Function) {
-        this.docRef.doc(id).onSnapshot({ includeMetadataChanges: true }, (snap: firestore.DocumentSnapshot) => {
+        this.docRef.doc(id).onSnapshot({includeMetadataChanges: true},(snap: firestore.DocumentSnapshot) => {
             callback(<Orders>snap.data())
         }, error => callback(error));
     }

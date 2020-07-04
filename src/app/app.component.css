@@ -1,0 +1,28 @@
+.sideStackLayout {
+    background-color: white;
+}
+
+.sideTitleStackLayout {
+    margin-top: 30;
+    margin-bottom: 10; 
+}
+.bottom-button {
+    background-color: #CDE4FE;
+}
+
+.btn-label {
+    text-align: center;
+    font-size: 20;
+}
+
+.item {
+    color:  rgba(32, 51, 75, 0.6);
+    font-size: 15; 
+}
+
+.ico {
+    color:  rgba(32, 51, 75, 0.6);
+    font-size: 18; 
+    text-align: center;
+    vertical-align: middle;
+}

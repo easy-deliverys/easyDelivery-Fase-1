@@ -1,0 +1,29 @@
+<StackLayout height="100%" width="100%">
+    <GridLayout rows="100,150,*,60" columns="*" width="100%"> 
+        <img src="res://easy_logo" col="0" row="1">
+        <StackLayout col="0" row="2" class="form" width="80%"> 
+            <label text="log in to your account" class="r-kufi log-text"></label>
+            <GridLayout rows="auto, auto" columns="*">
+                <StackLayout col="0" row="0" class="field">
+                    <GridLayout rows="auto" columns="20, *">
+                        <label row="0" col="0" text="&#xf003;" class="fa c-blue icon-field"></label>
+                        <TextField #email row="0"  col="1" hint="Email Address" secure="false" class="r-kufi t-field"
+                            keyboardType="email" autocorrect="true" maxLength="30">
+                        </TextField>
+                    </GridLayout>
+                </StackLayout>
+                <StackLayout col="0" row="1" class="field">
+                    <GridLayout rows="auto" columns="20, *">
+                        <label row="0" col="0" text="&#xf023;" class="fa c-blue icon-field"></label>
+                        <TextField #password row="0"  col="1" hint="Password" secure="true" class="r-kufi t-field" autocorrect="true" maxLength="20"  lineHeight="0">
+                        </TextField>
+                    </GridLayout>
+                </StackLayout>
+            </GridLayout>
+        </StackLayout>
+        <!--BOTON  INFERIOR-->
+        <StackLayout class="b-blue" orientation="horizontal" row="3" col="0" width="100%" (tap)="comenzar()">
+            <label text="Comenzar" verticalAlignment="center" class="r-kufi btn-label" width="100%" ></label>
+        </StackLayout> 
+    </GridLayout>
+</StackLayout>
