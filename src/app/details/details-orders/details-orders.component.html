@@ -1,0 +1,83 @@
+<ActionBar title="" class="action-bar b-blue" androidElevation="0">
+    <StackLayout>
+        <GridLayout rows="*" columns="50, *,auto, auto" *ngIf="Docref">
+            <label text="&#xf0c9;" row="0" col="0" class="fa icon_menu" (tap)="openMenu()"></label>
+            <label text="{{active ? 'Disponible': 'Ocupado'}}" row="0" col="2" class="r-kufi state"></label>
+            <Switch col="3" row="0" checked="{{active}}" color="{{ active ? 'limegreen' : 'dimgray'}}"
+                (checkedChange)="toggle($event)" backgroundColor="white"></Switch>
+        </GridLayout>
+        <GridLayout rows="*" columns="50, *" *ngIf="Docid">
+            <label text="&#xf060;" row="0" col="0" class="fa icon_menu" (tap)="openMenu()"></label>
+            <label text="Detalle" row="0" col="2" class="r-kufi state"></label>
+        </GridLayout>
+    </StackLayout>
+</ActionBar>
+
+<StackLayout class="card-view1" *ngIf="DetailsOrder">
+    <StackLayout class="card-view2" orientation="vertical" androidElevation="4.5">
+        <Label text="Información del solicitante" class="informations"></Label>
+        <GridLayout rows="auto,auto,auto" columns="*,*,*" class="card-view3">
+            <Label text="Nombre: " row="0" col="0" textWrap="true"></Label>
+            <Label text="{{DetailsOrder.solicitante.nombre}}" class="label-info" textWrap="true" row="0"
+                col="2"></Label>
+            <Label text="Cedula:" row="1" col="0"></Label>
+            <Label text="{{DetailsOrder.solicitante.cedula}}" class="label-info" row="1" col="2"></Label>
+            <Label text="Telefono:" row="2" col="0"></Label>
+            <Label text="{{DetailsOrder.solicitante.telefono}}" class="label-info" row=" 2" col="2"></Label>
+        </GridLayout>
+    </StackLayout>
+
+    <StackLayout class="ready" androidElevation="4.5">
+        <GridLayout rows="auto,auto,80,auto,auto" columns="auto,*">
+            <Label class="fa icons" row="0" col="0" text="&#xf10c;"></Label>
+            <StackLayout row="0" col="0">
+                <Label class="title">
+                    <FormattedString>
+                        <Span text="De: " class="r-phone"></Span>
+                        <Span text="{{DetailsOrder.recepcion.nombre}}" class="r-name"></Span>
+                    </FormattedString>
+                </Label>
+                <Label class="n-regular directions"
+                    text="{{DetailsOrder.recepcion.direccion}},{{DetailsOrder.recepcion.barrio}}"></Label>
+            </StackLayout>
+
+            <StackLayout row="1" col="0" orientation="horizontal"
+                *ngIf="DetailsOrder.estado == 'entregado' || DetailsOrder.estado == 'recibido'">
+                <Button text="Call" class="btn-call r-kufi" (tap)="OpenCall(DetailsOrder.entrega.telefono)"></Button>
+                <Button text="WhatSapp" class="btn-whatsapp r-kufi"
+                    (tap)="OpenWhatsapp(DetailsOrder.entrega.telefono)"></Button>
+            </StackLayout>
+
+            <StackLayout row="2" col="0" colSpan="2">
+
+            </StackLayout>
+
+            <Label class="fa icons" row="3" col="0" text="&#xf111;"></Label>
+            <StackLayout row="3" col="0">
+                <Label class="title">
+                    <FormattedString>
+                        <Span text="Para: " class="r-phone"></Span>
+                        <Span text="{{DetailsOrder.entrega.nombre}}" class="r-name"></Span>
+                    </FormattedString>
+                </Label>
+                <Label class="n-regular directions"
+                    text="{{DetailsOrder.entrega.direccion}},{{DetailsOrder.entrega.barrio}}"></Label>
+            </StackLayout>
+            <StackLayout row="4" col="0" orientation="horizontal"
+                *ngIf="DetailsOrder.estado == 'entregado' || DetailsOrder.estado == 'recibido'">
+                <Button text="Call" class="btn-call r-kufi " (tap)="OpenCall(DetailsOrder.entrega.telefono)"></Button>
+                <Button text="WhatSapp" class="btn-whatsapp r-kufi"
+                    (tap)="OpenWhatsapp(DetailsOrder.entrega.telefono)"></Button>
+            </StackLayout>
+        </GridLayout>
+    </StackLayout>
+
+    <GridLayout>
+        <label *ngIf="DetailsOrder.estado == 'nuevo'" text="Realizar entrega" class="btn-delivery r-kufi"
+            verticalAlignment="bottom" width="100%"> </label>
+        <label *ngIf="DetailsOrder.estado == 'entregado'" text="Paquete entregado" class="btn-delivered r-kufi"
+            verticalAlignment="bottom" width="100%"> </label>
+        <label *ngIf="DetailsOrder.estado == 'recibido'" text="Paquete recibido" class="btn-received r-kufi"
+            verticalAlignment="bottom" width="100%"> </label>
+    </GridLayout>
+</StackLayout>
