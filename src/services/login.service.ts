@@ -14,12 +14,12 @@ export class LoginService {
                 LoginService.codeUser = userLogin.email;
                 callback(true)
             })
-            .catch(() =>  callback(false));
+            .catch(() => callback(false));
     }
 
     public static get codeUser() {
-        let doc =  AppSettings.getString("_doc");
-        return doc != null ? doc : ""; 
+        let doc = AppSettings.getString("_doc");
+        return doc != null ? doc : "";
     }
 
     public static set codeUser(pass: string) {

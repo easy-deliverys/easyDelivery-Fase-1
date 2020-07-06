@@ -46,6 +46,7 @@ Button.-primary {
 
 .n-regular {
     font-family: 'NotoSansJP-Regular';
+    margin: 0;
 }
 
 .n-thin {

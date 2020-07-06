@@ -5,7 +5,7 @@ import { LoginService } from './login.service';
 import { Courier } from '~/models/courier.model';
 import { stateOrders } from '~/app/types';
 import * as geolocation from "nativescript-geolocation";
-import { Accuracy } from "tns-core-modules/ui/enums"; 
+import { Accuracy } from "tns-core-modules/ui/enums";
 
 @Injectable({
     providedIn: 'root'
@@ -29,10 +29,12 @@ export class CourierService {
         await this.actualLocation();
         firebase.firestore().batch()
             .update(this.docRef, { realizando: orden.id })
-            .update(orden, { estado: OrderState, encargado: LoginService.codeUser, escogido: { 
-                ubicacion: firebase.firestore().GeoPoint(CourierService.Location.latitude, CourierService.Location.longitude ), 
-                hora: firestore.FieldValue.serverTimestamp() 
-            }})
+            .update(orden, {
+                estado: OrderState, encargado: LoginService.codeUser, escogido: {
+                    ubicacion: firebase.firestore().GeoPoint(CourierService.Location.latitude, CourierService.Location.longitude),
+                    hora: firestore.FieldValue.serverTimestamp()
+                }
+            })
             .commit()
             .then(() => console.log("Batch successfully committed"))
             .catch(error => console.log(`Batch error: ${error}`));
@@ -41,10 +43,12 @@ export class CourierService {
     async paqueteRecibido(orden: firestore.DocumentReference, OrderState: stateOrders) {
         await this.actualLocation();
         firebase.firestore().batch()
-            .update(orden, { estado: OrderState, recibido:{ 
-                ubicacion: firebase.firestore().GeoPoint(CourierService.Location.latitude, CourierService.Location.longitude ), 
-                hora: firestore.FieldValue.serverTimestamp() 
-            }})
+            .update(orden, {
+                estado: OrderState, recibido: {
+                    ubicacion: firebase.firestore().GeoPoint(CourierService.Location.latitude, CourierService.Location.longitude),
+                    hora: firestore.FieldValue.serverTimestamp()
+                }
+            })
             .commit()
             .then(() => console.log("Batch successfully committed"))
             .catch(error => console.log(`Batch error: ${error}`));
@@ -53,11 +57,13 @@ export class CourierService {
     async paqueteEntregado(orden: firestore.DocumentReference, OrderState: stateOrders) {
         await this.actualLocation();
         firebase.firestore().batch()
-            .update(this.docRef, { realizando: "" , realizados: CourierService.courier.realizados})
-            .update(orden, { estado: OrderState, entregado:{ 
-                ubicacion: firebase.firestore().GeoPoint(CourierService.Location.latitude, CourierService.Location.longitude ), 
-                hora: firestore.FieldValue.serverTimestamp() 
-            }})
+            .update(this.docRef, { realizando: "", realizados: CourierService.courier.realizados })
+            .update(orden, {
+                estado: OrderState, entregado: {
+                    ubicacion: firebase.firestore().GeoPoint(CourierService.Location.latitude, CourierService.Location.longitude),
+                    hora: firestore.FieldValue.serverTimestamp()
+                }
+            })
             .commit()
             .then(() => console.log("Batch successfully committed"))
             .catch(error => console.log(`Batch error: ${error}`));
@@ -65,7 +71,7 @@ export class CourierService {
 
     private async actualLocation() {
         try {
-            CourierService.Location = await geolocation.getCurrentLocation({ desiredAccuracy: Accuracy.any, maximumAge: 5000, timeout: 20000 });   
+            CourierService.Location = await geolocation.getCurrentLocation({ desiredAccuracy: Accuracy.any, maximumAge: 5000, timeout: 20000 });
         } catch (error) {
             alert("Parece que hay un problema con el GPS reinicia la opcion de ubicacion de tu telefono");
         }

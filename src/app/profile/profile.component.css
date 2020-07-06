@@ -1,0 +1,58 @@
+.icon_menu , .state {
+    font-size: 20;
+    color: white;
+    vertical-align: middle;
+}
+
+.state{
+    text-align: left;
+}
+
+.card-view1{
+    margin: 0;
+    background-color: #1A83FF;
+    color: #000000;
+  
+}
+
+.profile-img{
+    width: 150;
+    height: 150;
+    border-radius: 100;
+    margin: 32 32 16 32;
+    border-color: #CDE4FE;
+    border:160px solid ;
+    border-width: 5;
+    margin-top: 16;
+}
+
+/*
+Si en algun momento de le pone el icono de modificar la foto
+ .btn-img{ 
+    width: 50;
+    height: 50;
+    border-radius: 100;
+    font-size: 20;
+    margin-top: -50;
+    margin-left: 80;
+}   
+*/
+.informations{
+    color: #1A83FF; 
+    font-size: 20;
+    margin-bottom: 3;
+    margin-top: 3;
+}
+
+.label-aling{
+    text-align: right;
+    color: #20334B;
+}
+.card-view2{
+    margin: 15;
+}
+
+.info-profile{
+    font-size: 16;
+    color: #909090;
+}
