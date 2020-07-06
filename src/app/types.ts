@@ -1,1 +1,1 @@
-export type stateOrders = "new" | "process" | "received" | "delivered";
+export type stateOrders = "new" | "received" | "delivered" | "ready";

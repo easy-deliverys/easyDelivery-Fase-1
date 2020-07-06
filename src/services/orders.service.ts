@@ -12,7 +12,7 @@ export class OrdersService {
     }
 
     async watchListOrders(callback: Function) {
-        this.docRef.onSnapshot({includeMetadataChanges: true},(snap: firestore.QuerySnapshot) => {
+        this.docRef.where("estado","==","new").onSnapshot({includeMetadataChanges: true},(snap: firestore.QuerySnapshot) => {
             OrdersService.list = [];
             snap.forEach( item => {
                 let data = <Orders>item.data();
@@ -28,4 +28,5 @@ export class OrdersService {
             callback(<Orders>snap.data())
         }, error => callback(error));
     }
+
 }

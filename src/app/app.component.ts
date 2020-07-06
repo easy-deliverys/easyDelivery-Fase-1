@@ -2,6 +2,9 @@ import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef } from "
 import { MenuService } from "./menu.service";
 import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+import { CourierService } from "~/services/courier.service";
+import { Courier } from "~/models/courier.model";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "ns-app",

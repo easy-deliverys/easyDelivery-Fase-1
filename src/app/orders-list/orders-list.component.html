@@ -7,7 +7,7 @@
         </GridLayout>
     </StackLayout> 
 </ActionBar>
-<StackLayout height="100%">
+<StackLayout height="100%" *ngIf="courier.realizando.length > 0">
     <GridLayout rows="70" columns="*">
         <StackLayout row="0" col="0" class="b-blue">
         </StackLayout>
@@ -15,28 +15,36 @@
 </StackLayout>
 <StackLayout class="content" width="90%">
     <GridLayout rows="auto,auto,*" columns="*"> 
-        <StackLayout class="ready-top" androidElevation="4.5">
-            <GridLayout rows="auto" columns="*, auto">
+        <StackLayout class="ready-top" androidElevation="4.5" *ngIf="courier.realizando.length > 0" 
+            [nsRouterLink]="['/detailsorders', courier.realizando]" pageTransition="slide">
+            <GridLayout rows="auto" columns="*, auto" >
                 <StackLayout row="0" col="0">
-                    <label textWrap="true" text="Michael Jhacksón" class="r-name"></label>
-                    <label textWrap="true" text="cel: 3022745897" class="r-phone"></label>
+                    <label textWrap="true" text="Pedido en curso" class="r-name"></label>
+                    <label textWrap="true" text="Haz click aquí para verlo" class="r-phone"></label>
                 </StackLayout>
                 <StackLayout row="0" col="1">
                     <label text="en proceso" class="i-process r-kufi"></label>
                 </StackLayout>
             </GridLayout>
         </StackLayout>
-        <StackLayout row="1" col="0" class="title-list">
+        <StackLayout *ngIf="listOrders.length > 0 && !courier.banned" row="1" col="0" class="title-list">
             <Label text="Lista de pedidos" textWrap="true" class="t-list"></Label>
             <Label text="{{countNuevos}} nuevos" textWrap="true" class="s-list"></Label>
         </StackLayout>
-        <RadListView row="2" col="0" [items]="listOrders" separatorColor="white">
+        <StackLayout *ngIf="listOrders.length == 0 || courier.banned"  orientation="horizontal" row="2" col="0">
+            <StackLayout  verticalAlignment="center" width="100%" orientation="vertical">
+                <Label text="Usted fue baneado" *ngIf="courier.banned" horizontalAlignment="center"  textWrap="true" class="clock-m"></Label>
+                <Label text="&#xf017;" horizontalAlignment="center"  class="fa c-clock"></Label>
+                <Label text="{{!courier.banned ? 'En espera de nuevos pedidos' : 'No recibira mas pedidos, visite al administrador'}}" width="70%" horizontalAlignment="center"  textWrap="true" class="clock-m"></Label>
+            </StackLayout>
+        </StackLayout>
+        <RadListView *ngIf="listOrders.length > 0 && !courier.banned" row="2" col="0" [items]="listOrders" separatorColor="white">
             <ng-template  tkListItemTemplate let-item="item" let-odd="odd" let-even="even">
-                <StackLayout class="ready" androidElevation="4.5">
+                <StackLayout class="ready" androidElevation="4.5" (tap)="detailOrder(item.id)" pageTransition="slide">
                     <GridLayout rows="auto,0,*" columns="*, auto">
                         <StackLayout row="0" col="0"> 
-                            <label textWrap="true" [text]="item.solicitante.nombre" class="r-name"></label>
-                            <label textWrap="true" text="cel: {{item.solicitante.telefono}}" class="r-phone"></label>
+                            <label textWrap="true" [text]="item.solicitante.nombre" class="r-name" [ngClass]="{ofuscate: courier.realizando !== ''}"></label>
+                            <label textWrap="true" text="cel: {{item.solicitante.telefono}}" class="r-phone" [ngClass]="{ofuscate: courier.realizando !== ''}"></label>
                         </StackLayout>
                         <StackLayout row="0" col="1">
                             <label text="nuevo" class="l-process r-kufi c-blue"></label>
@@ -45,13 +53,13 @@
                             <GridLayout rows="auto,5,auto" columns="30, *">
                                 <label row="0" col="0" text="&#xf10c;" class="fa c-blue ico"></label>
                                 <StackLayout row="0" col="1">
-                                    <label text="Recoger en:" class="r-label"></label>
-                                    <label text="{{item.recepcion.direccion + ', ' + item.recepcion.barrio }}" class="r-phone" textWrap="true"></label>
+                                    <label text="Recoger en:" class="r-label" [ngClass]="{ofuscate: courier.realizando !== ''}"></label>
+                                    <label text="{{item.recepcion.direccion + ', ' + item.recepcion.barrio }}" class="r-phone" textWrap="true" [ngClass]="{ofuscate: courier.realizando !== ''}"></label>
                                 </StackLayout>
                                 <label row="2" col="0" text="&#xf111;" class="fa c-blue  ico"></label>
                                 <StackLayout row="2" col="1" >
-                                    <label text="Entregar en:" class="r-label" ></label>
-                                    <label text="{{item.entrega.direccion + ', ' + item.entrega.barrio }}" class="r-phone" textWrap="true"></label>
+                                    <label text="Entregar en:" class="r-label" [ngClass]="{ofuscate: courier.realizando !== ''}"></label>
+                                    <label text="{{item.entrega.direccion + ', ' + item.entrega.barrio }}" class="r-phone" textWrap="true" [ngClass]="{ofuscate: courier.realizando !== ''}"></label>
                                 </StackLayout>
                             </GridLayout>
                         </StackLayout>

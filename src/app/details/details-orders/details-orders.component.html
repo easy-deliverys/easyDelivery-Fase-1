@@ -1,17 +1,18 @@
 <ActionBar title="" class="action-bar b-blue" androidElevation="0">
     <StackLayout>
-        <GridLayout rows="*" columns="50, *,auto, auto" *ngIf="Docref">
+        <GridLayout rows="*" columns="50, *,auto, auto" *ngIf="ref != null">
             <label text="&#xf0c9;" row="0" col="0" class="fa icon_menu" (tap)="openMenu()"></label>
             <label text="{{active ? 'Disponible': 'Ocupado'}}" row="0" col="2" class="r-kufi state"></label>
             <Switch col="3" row="0" checked="{{active}}" color="{{ active ? 'limegreen' : 'dimgray'}}"
                 (checkedChange)="toggle($event)" backgroundColor="white"></Switch>
         </GridLayout>
-        <GridLayout rows="*" columns="50, *" *ngIf="Docid">
-            <label text="&#xf060;" row="0" col="0" class="fa icon_menu" (tap)="openMenu()"></label>
+        <GridLayout rows="*" columns="50, *" *ngIf="id != null">
+            <label text="&#xf060;" row="0" col="0" class="fa icon_menu" (tap)="back()"></label>
             <label text="Detalle" row="0" col="2" class="r-kufi state"></label>
         </GridLayout>
     </StackLayout>
 </ActionBar>
+
 
 <StackLayout class="card-view1" *ngIf="DetailsOrder">
     <StackLayout class="card-view2" orientation="vertical" androidElevation="4.5">
@@ -38,11 +39,11 @@
                     </FormattedString>
                 </Label>
                 <Label class="n-regular directions"
-                    text="{{DetailsOrder.recepcion.direccion}},{{DetailsOrder.recepcion.barrio}}"></Label>
+                    text="{{DetailsOrder.recepcion.direccion}}, {{DetailsOrder.recepcion.barrio}}"></Label>
             </StackLayout>
 
             <StackLayout row="1" col="0" orientation="horizontal"
-                *ngIf="DetailsOrder.estado == 'entregado' || DetailsOrder.estado == 'recibido'">
+                *ngIf="(DetailsOrder.estado == 'received' || DetailsOrder.estado == 'delivered') && DetailsOrder.encargado == email ">
                 <Button text="Call" class="btn-call r-kufi" (tap)="OpenCall(DetailsOrder.entrega.telefono)"></Button>
                 <Button text="WhatSapp" class="btn-whatsapp r-kufi"
                     (tap)="OpenWhatsapp(DetailsOrder.entrega.telefono)"></Button>
@@ -61,10 +62,10 @@
                     </FormattedString>
                 </Label>
                 <Label class="n-regular directions"
-                    text="{{DetailsOrder.entrega.direccion}},{{DetailsOrder.entrega.barrio}}"></Label>
+                    text="{{DetailsOrder.entrega.direccion}}, {{DetailsOrder.entrega.barrio}}"></Label>
             </StackLayout>
             <StackLayout row="4" col="0" orientation="horizontal"
-                *ngIf="DetailsOrder.estado == 'entregado' || DetailsOrder.estado == 'recibido'">
+                *ngIf="(DetailsOrder.estado == 'received' || DetailsOrder.estado == 'delivered') && DetailsOrder.encargado == email ">
                 <Button text="Call" class="btn-call r-kufi " (tap)="OpenCall(DetailsOrder.entrega.telefono)"></Button>
                 <Button text="WhatSapp" class="btn-whatsapp r-kufi"
                     (tap)="OpenWhatsapp(DetailsOrder.entrega.telefono)"></Button>
@@ -73,11 +74,15 @@
     </StackLayout>
 
     <GridLayout>
-        <label *ngIf="DetailsOrder.estado == 'nuevo'" text="Realizar entrega" class="btn-delivery r-kufi"
-            verticalAlignment="bottom" width="100%"> </label>
-        <label *ngIf="DetailsOrder.estado == 'entregado'" text="Paquete entregado" class="btn-delivered r-kufi"
-            verticalAlignment="bottom" width="100%"> </label>
-        <label *ngIf="DetailsOrder.estado == 'recibido'" text="Paquete recibido" class="btn-received r-kufi"
+        <label *ngIf="DetailsOrder.encargado !== email" text="Pedido Tomado" class="btn-ready r-kufi"
+        verticalAlignment="bottom" width="100%"> </label>
+        <label *ngIf="DetailsOrder.estado == 'new' && DetailsOrder.encargado == ''" text="Realizar pedido" class="btn-delivery r-kufi"
+            verticalAlignment="bottom" width="100%" (tap)="delivery('received')"></label>
+        <label *ngIf="DetailsOrder.estado == 'received' && DetailsOrder.encargado == email" text="Paquete recibido" class="btn-received r-kufi"
+            verticalAlignment="bottom" width="100%" (tap)="delivery('delivered')"> </label>
+            <label *ngIf="DetailsOrder.estado == 'delivered' && DetailsOrder.encargado == email" text="Paquete entregado" class="btn-delivered r-kufi"
+            verticalAlignment="bottom" width="100%" (tap)="delivery('ready')"> </label>
+        <label *ngIf="DetailsOrder.estado == 'ready' && DetailsOrder.encargado == email" text="Pedido terminado" class="btn-ready r-kufi"
             verticalAlignment="bottom" width="100%"> </label>
     </GridLayout>
 </StackLayout>
