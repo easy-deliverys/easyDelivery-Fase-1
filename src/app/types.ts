@@ -1,2 +1,2 @@
 export type stateOrders = "new" | "received" | "delivered" | "ready";
-export type menuOptions = "ordersList" | "perfil" | "completeOrders" | "pagos" | "signin";
+export type menuOptions = "ordersList" | "profile" | "completeOrders" | "pagos" | "signin";

@@ -2,7 +2,6 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { MenuService } from '../menu.service';
 import { CourierService } from '~/services/courier.service';
 import { Courier } from '~/models/courier.model';
-import { LoginService } from '~/services/login.service';
 import { EventData, Switch } from 'tns-core-modules';
 
 @Component({
@@ -15,12 +14,14 @@ export class ProfileComponent implements OnInit {
 	Courier = new Courier();
 	active: boolean = false;
 
-	constructor(private menuService: MenuService,
+	constructor(
+		private ngZone: NgZone,
+		private menuService: MenuService,
 		private courierService: CourierService) {
 	}
 
 	ngOnInit() {
-		this.menuService.openSideDrawer.emit(false);
+		this.active = CourierService.isDisponible;
 		this.courierService.watchCurier((Element: Courier) => {
 			this.Courier = Element
 		});
@@ -32,6 +33,9 @@ export class ProfileComponent implements OnInit {
 
 	toggle(args: EventData) {
 		let sw = args.object as Switch;
-		this.active = sw.checked; // boolean
+		this.ngZone.run(item => {
+			CourierService.isDisponible = sw.checked; // boolean
+			this.active = CourierService.isDisponible;
+		});
 	}
 }

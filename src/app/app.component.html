@@ -10,18 +10,13 @@
                     <Label text="&#xf015;" class="fa  ico" row="0" col="0" ></Label>
                     <Label text="Home" class="n-medium item" row="0" col="1"></Label>
                 </GridLayout> 
-                <GridLayout rows="*" columns="40, *">
-                    <Label text="&#xf2be;" class="fa  ico" row="0" col="0"></Label>
-                    <Label text="Perfil" class="n-medium item" row="0" col="1" [nsRouterLink]="['/profile']"
-                        routerLinkActive="router-link-active"></Label>
+                <GridLayout rows="*" columns="40, *" (tap)="navigateTo('profile')" [ngClass]="{active: menuOption == 'profile'}">
+                    <Label text="&#xf2be;" class="fa  ico" row="0" col="0" ></Label>
+                    <Label text="Perfil" class="n-medium item" row="0" col="1"></Label>
                 </GridLayout>
                 <GridLayout rows="*" columns="40, *" (tap)="navigateTo('completeOrders')" [ngClass]="{active: menuOption == 'completeOrders'}">
                     <Label text="&#xf046;" class="fa  ico" row="0" col="0" ></Label>
                     <Label text="Pedidos realizados" class="n-medium item" row="0" col="1"></Label>
-                </GridLayout>
-                <GridLayout rows="*" columns="40, *">
-                    <Label text="&#xf09d;" class="fa ico" row="0" col="0"></Label>
-                    <Label text="Medios de pago" class="n-medium item" row="0" col="1"></Label>
                 </GridLayout>
                 <GridLayout rows="*" columns="40, *" (tap) = "closeSesion()">
                     <Label text="&#xf00d;" class="fa ico" row="0" col="0"></Label>

@@ -8,11 +8,12 @@
         </GridLayout>
     </StackLayout>
 </ActionBar>
+<ScrollView>
 <StackLayout *ngIf="Courier">
     <StackLayout class="card-view1">
         <GridLayout rows="auto,auto" columns="*" colSpan="2">
-            <Image row="0" col="1" class="profile-img" stretch="aspectFill"
-                src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg">
+            <Image row="0" col="1" class="profile-img fa fa-img " stretch="aspectFill"
+                src="{{Courier.image.length > 0 ? Courier.image : 'font://&#xf2be;'}}">
             </Image>
         </GridLayout>
     </StackLayout>
@@ -21,29 +22,30 @@
         <Label text="Información del solicitante" class="informations"></Label>
         <GridLayout rows="auto,auto,auto,auto" columns="auto,*" class="info-profile">
             <Label text="Nombre: " row="0" col="0" textWrap="true"></Label>
-            <Label text="{{Courier.nombre}}" textWrap="true" row="0" col="2" class="label-aling"></Label>
+            <Label text="{{Courier.nombre}}" textWrap="true" row="0" col="1" class="label-aling"></Label>
             <Label text="Cedula:" row="1" col="0" textWrap="true"></Label>
-            <Label text="{{Courier.cedula}}" row="1" col="2" textWrap="true" class="label-aling"></Label>
+            <Label text="{{Courier.cedula}}" row="1" col="1" textWrap="true" class="label-aling"></Label>
             <Label text="Telefono:" row="2" col="0" textWrap="true"></Label>
-            <Label text="{{Courier.telefono}}" row=" 2" col="2" textWrap="true" class="label-aling"></Label>
+            <Label text="{{Courier.telefono}}" row=" 2" col="1" textWrap="true" class="label-aling"></Label>
             <Label text="Genero:" row="3" col="0" textWrap="true"></Label>
-            <Label text="{{Courier.genero}}" row="3" col="2" textWrap="true" class="label-aling"></Label>
+            <Label text="{{Courier.genero}}" row="3" col="1" textWrap="true" class="label-aling"></Label>
         </GridLayout>
-        <GridLayout rows="auto,auto,auto" columns="*,*,*" class="info-profile">
+        <GridLayout rows="auto,auto,5" columns="auto,*" class="info-profile">
             <Label text="Direccion:" row="0" col="0" textWrap="true"></Label>
-            <Label text="{{Courier.direccion}}" row="0" col="2" textWrap="true" class="label-aling"></Label>
+            <Label text="{{Courier.direccion}}" row="0" col="1" textWrap="true" class="label-aling"></Label>
             <Label text="Fecha nacimiento:" row="1" col="0" textWrap="true"></Label>
-            <Label text="{{Courier.fechaNacimiento}}" row="1" col="2" textWrap="true" class="label-aling"></Label>
+            <Label text="{{Courier.fechaNacimiento}}" row="1" col="1" textWrap="true" class="label-aling"></Label>
         </GridLayout>
 
         <Label text="Información del vehiculo" class="informations"></Label>
-        <GridLayout rows="auto,auto,auto" columns="*,*,*" class="info-profile" *ngIf="Courier.vehiculo">
+        <GridLayout rows="auto,auto,auto" columns="auto,*" class="info-profile" *ngIf="Courier.vehiculo">
             <Label text="Marca: " row="0" col="0" textWrap="true"></Label>
-            <Label text="{{Courier.vehiculo.marca}}" textWrap="true" row="0" col="2" class="label-aling"></Label>
+            <Label text="{{Courier.vehiculo.marca}}" textWrap="true" row="0" col="1" class="label-aling"></Label>
             <Label text="Numero de placa:" row="1" col="0"></Label>
-            <Label text="{{Courier.vehiculo.matricula}}" row="1" col="2" class="label-aling"></Label>
+            <Label text="{{Courier.vehiculo.matricula}}" row="1" col="1" class="label-aling"></Label>
             <Label text="Tipo de vehiculo:" row="2" col="0"></Label>
-            <Label text="{{Courier.vehiculo.tipoVehiculo}}" row=" 2" col="2" class="label-aling"></Label>
+            <Label text="{{Courier.vehiculo.tipoVehiculo}}" row=" 2" col="1" class="label-aling"></Label>
         </GridLayout>
     </StackLayout>
 </StackLayout>
+</ScrollView>

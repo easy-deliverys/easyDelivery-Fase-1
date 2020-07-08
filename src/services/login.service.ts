@@ -18,8 +18,7 @@ export class LoginService {
     }
 
     public static get codeUser() {
-        let doc = AppSettings.getString("_doc");
-        return doc != null ? doc : "";
+        return AppSettings.getString("_doc", "");
     }
 
     public static set codeUser(pass: string) {
@@ -27,6 +26,7 @@ export class LoginService {
     }
     
     public static closeSesion() {
+        firebase.auth().signOut();
         AppSettings.clear();
         return "/signin";
     }

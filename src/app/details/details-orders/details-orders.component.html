@@ -39,7 +39,7 @@
                     </FormattedString>
                 </Label>
                 <Label class="n-regular directions"
-                    text="{{DetailsOrder.recepcion.direccion}}+ ', ' +{{DetailsOrder.recepcion.barrio}}"></Label>
+                    text="{{DetailsOrder.recepcion.direccion}}, {{DetailsOrder.recepcion.barrio}}"></Label>
             </StackLayout>
 
             <StackLayout row="1" col="0" orientation="horizontal"
@@ -62,7 +62,7 @@
                     </FormattedString>
                 </Label>
                 <Label class="n-regular directions"
-                    text="{{DetailsOrder.entrega.direccion}}+', '+{{DetailsOrder.entrega.barrio}}"></Label>
+                    text="{{DetailsOrder.entrega.direccion}}, {{DetailsOrder.entrega.barrio}}"></Label>
             </StackLayout>
             <StackLayout row="4" col="0" orientation="horizontal"
                 *ngIf="(DetailsOrder.estado == 'received' || DetailsOrder.estado == 'delivered') && DetailsOrder.encargado == email ">
