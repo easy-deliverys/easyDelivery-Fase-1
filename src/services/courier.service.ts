@@ -57,7 +57,7 @@ export class CourierService {
 
     private async actualLocation() {
         try {
-            CourierService.Location = await geolocation.getCurrentLocation({ desiredAccuracy: Accuracy.any, maximumAge: 5000, timeout: 20000 });   
+            CourierService.Location = await geolocation.getCurrentLocation({ desiredAccuracy: Accuracy.any, maximumAge: 5000, timeout: 20000 });
         } catch (error) {
             alert("Parece que hay un problema con el GPS reinicia la opcion de ubicacion de tu telefono.");
         }
