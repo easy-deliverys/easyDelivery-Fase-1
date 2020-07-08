@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Page } from 'tns-core-modules/ui/page';
 import { login } from '~/models/login.model';
 import { LoginService } from '~/services/login.service';

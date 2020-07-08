@@ -1,13 +1,11 @@
-import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { MenuService } from '../menu.service';
 import { EventData } from 'tns-core-modules/ui/page';
-import { ObservableArray, Observable } from "tns-core-modules";
+import { ObservableArray } from "tns-core-modules";
 import { Switch } from 'tns-core-modules/ui/switch';
 import { OrdersService } from '~/services/orders.service';
 import { Orders } from '~/models/orders.model';
-import { Routes, Router, ActivatedRoute, ActivationEnd, NavigationEnd, NavigationStart } from '@angular/router';
-import { topmost } from 'tns-core-modules/ui/frame';
-import { LoginService } from '~/services/login.service';
+import { Router, NavigationEnd } from '@angular/router';
 import { CourierService } from '~/services/courier.service';
 import { Courier } from '~/models/courier.model';
 
@@ -34,6 +32,7 @@ export class OrdersListComponent implements OnInit {
 	) {	}
 
 	async ngOnInit() {
+		this.active = CourierService.isDisponible;
 		this.courierService.watchCurier((curier: Courier) => {
 			this.NgZone.run(item => {
 				this.courier = curier;
@@ -62,7 +61,10 @@ export class OrdersListComponent implements OnInit {
 
 	toggle(args: EventData) {
 		let sw = args.object as Switch;
-		this.active = sw.checked; // boolean
+		this.NgZone.run(item => {
+			CourierService.isDisponible = sw.checked; // boolean
+			this.active = CourierService.isDisponible;
+		});
 	}
 
 	detailOrder(index: string) {

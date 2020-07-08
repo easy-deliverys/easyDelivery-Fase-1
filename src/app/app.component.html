@@ -6,23 +6,23 @@
         </StackLayout>
         <ScrollView row="1">
             <StackLayout class="sideStackLayout">
-                <GridLayout rows="*" columns="40, *">
-                    <Label text="&#xf015;" class="fa  ico" row="0" col="0"></Label>
+                <GridLayout rows="*" columns="40, *" (tap)="navigateTo('ordersList')" [ngClass]="{active: menuOption == 'ordersList'}">
+                    <Label text="&#xf015;" class="fa  ico" row="0" col="0" ></Label>
                     <Label text="Home" class="n-medium item" row="0" col="1"></Label>
-                </GridLayout>
+                </GridLayout> 
                 <GridLayout rows="*" columns="40, *">
                     <Label text="&#xf2be;" class="fa  ico" row="0" col="0"></Label>
                     <Label text="Perfil" class="n-medium item" row="0" col="1"></Label>
                 </GridLayout>
-                <GridLayout rows="*" columns="40, *">
-                    <Label text="&#xf046;" class="fa  ico" row="0" col="0"></Label>
+                <GridLayout rows="*" columns="40, *" (tap)="navigateTo('completeOrders')" [ngClass]="{active: menuOption == 'completeOrders'}">
+                    <Label text="&#xf046;" class="fa  ico" row="0" col="0" ></Label>
                     <Label text="Pedidos realizados" class="n-medium item" row="0" col="1"></Label>
                 </GridLayout>
                 <GridLayout rows="*" columns="40, *">
                     <Label text="&#xf09d;" class="fa ico" row="0" col="0"></Label>
                     <Label text="Medios de pago" class="n-medium item" row="0" col="1"></Label>
                 </GridLayout>
-                <GridLayout rows="*" columns="40, *">
+                <GridLayout rows="*" columns="40, *" (tap) = "closeSesion()">
                     <Label text="&#xf00d;" class="fa ico" row="0" col="0"></Label>
                     <Label text="Cerrar sesión" class="n-medium item" row="0" col="1"></Label>
                 </GridLayout>

@@ -1,3 +1,87 @@
-.completeOrders {
+.icon_menu, .state  {
+    font-size: 20;
+    color: white;
+    vertical-align: middle;
+}
 
+.state {
+   text-align: left;
+}
+
+.ready,.ready-top {
+    margin: 10 10 10 10;
+    border-radius: 15;
+    padding: 10;
+    background-color: white;
+}
+
+.ready-top {
+    margin-top: 25;
+}
+
+.l-process {
+    padding: 3;
+    padding-left: 6;
+    padding-right: 6;
+    background-color: #fed8cd;
+    color: red;
+    font-size: 18;
+    border-radius: 7;
+}
+.r-name {
+    margin: 0;
+    font-weight: 800;
+    color: #20334B;
+    font-size: 16;
+    padding: 0;
+}
+
+.r-phone {
+    
+    color: #909090;
+    font-size: 15;
+    padding: 0;
+    margin: 0;
+}
+
+.t-list {
+    margin-top: 15;
+    color: #B6B6B6;
+    background-color: transparent;
+    font-size: 15;
+}
+
+.s-list {
+    color: #B6B6B6;
+    font-size: 12;
+    background-color: transparent;
+}
+
+.r-label {
+    font-size: 13;
+    color: #666666;
+    padding: 0;
+}
+
+.ico {
+    font-size: 20;
+}
+
+.ofuscate {
+    color: #eeeeee;
+    background-color:#eeeeee;
+    border-radius: 50%;
+    font-size: 10;
+    margin: 3;
+}
+
+.c-clock {
+    font-size: 100;
+    color: #eeeeee;
+}
+
+.clock-m {
+    color: #B6B6B6;
+    font-size: 15;
+    text-align: center;
 }
