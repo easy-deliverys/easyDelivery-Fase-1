@@ -1,1 +1,52 @@
-<Label class="completeOrders" text="Hello CompleteOrdersComponent!"></Label>
+<ActionBar title="" class="action-bar b-blue" androidElevation="0">
+    <StackLayout>
+        <GridLayout rows="*" columns="50, *,auto, auto">
+            <label text="&#xf0c9;" row="0" col="0" class="fa icon_menu" (tap)="openMenu()"></label>
+            <label text="{{active ? 'Disponible': 'Ocupado'}}" row="0" col="2" class="r-kufi state"></label>
+            <Switch col="3" row="0" checked="{{active}}" color="{{ active ? 'limegreen' : 'dimgray'}}" (checkedChange)="toggle($event)" backgroundColor="white"></Switch>
+        </GridLayout>
+    </StackLayout> 
+</ActionBar>
+<StackLayout class="content" width="90%">
+    <GridLayout rows="auto,*" columns="*"> 
+        <StackLayout *ngIf="listOrders.length > 0" row="0" col="0" class="title-list">
+            <Label text="Lista de pedidos completados" textWrap="true" class="t-list"></Label>
+            <Label text="{{countCompletes}} completados" textWrap="true" class="s-list"></Label>
+        </StackLayout>
+        <StackLayout *ngIf="listOrders.length == 0 "  orientation="horizontal" row="1" col="0">
+            <StackLayout  verticalAlignment="center" width="100%" orientation="vertical">
+                <Label text="&#xf046;" horizontalAlignment="center"  class="fa c-clock"></Label>
+                <Label text="Cuando termines de realizar un pedido se verá reflejado en esta lista" width="70%" horizontalAlignment="center"  textWrap="true" class="clock-m"></Label>
+            </StackLayout>
+        </StackLayout>
+        <RadListView *ngIf="listOrders.length > 0" row="1" col="0" [items]="listOrders" separatorColor="white">
+            <ng-template  tkListItemTemplate let-item="item" let-odd="odd" let-even="even">
+                <StackLayout class="ready" androidElevation="4.5">
+                    <GridLayout rows="auto,0,*" columns="*, auto">
+                        <StackLayout row="0" col="0"> 
+                            <label textWrap="true" [text]="item.solicitante.nombre" class="r-name"></label>
+                            <label textWrap="true" text="cel: {{item.solicitante.telefono}}" class="r-phone"></label>
+                        </StackLayout>
+                        <StackLayout row="0" col="1">
+                            <label text="realizado" class="l-process r-kufi"></label>
+                        </StackLayout>
+                        <StackLayout row="2" col="0" colSpan="2">
+                            <GridLayout rows="auto,5,auto" columns="30, *">
+                                <label row="0" col="0" text="&#xf10c;" class="fa c-blue ico"></label>
+                                <StackLayout row="0" col="1">
+                                    <label text="Recoger en:" class="r-label"></label>
+                                    <label text="{{item.recepcion.direccion + ', ' + item.recepcion.barrio }}" class="r-phone" textWrap="true"></label>
+                                </StackLayout>
+                                <label row="2" col="0" text="&#xf111;" class="fa c-blue  ico"></label>
+                                <StackLayout row="2" col="1" >
+                                    <label text="Entregar en:" class="r-label"></label>
+                                    <label text="{{item.entrega.direccion + ', ' + item.entrega.barrio }}" class="r-phone" textWrap="true"></label>
+                                </StackLayout>
+                            </GridLayout>
+                        </StackLayout>
+                    </GridLayout>
+                </StackLayout>
+            </ng-template>
+        </RadListView>
+    </GridLayout>
+</StackLayout>

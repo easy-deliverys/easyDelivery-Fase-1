@@ -25,4 +25,9 @@ export class LoginService {
     public static set codeUser(pass: string) {
         AppSettings.setString("_doc", pass);
     }
+    
+    public static closeSesion() {
+        AppSettings.clear();
+        return "/signin";
+    }
 }
