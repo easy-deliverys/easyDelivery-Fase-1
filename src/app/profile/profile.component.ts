@@ -23,7 +23,9 @@ export class ProfileComponent implements OnInit {
 	ngOnInit() {
 		this.active = CourierService.isDisponible;
 		this.courierService.watchCurier((Element: Courier) => {
-			this.Courier = Element
+			this.ngZone.run(() => {
+				this.Courier = Element;
+			});
 		});
 	}
 

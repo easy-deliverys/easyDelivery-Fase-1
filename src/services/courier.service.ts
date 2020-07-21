@@ -20,7 +20,7 @@ export class CourierService {
     }
 
     async watchCurier(callback: Function) {
-        this.docRef.onSnapshot({ includeMetadataChanges: true }, (snap: firestore.DocumentSnapshot) => {
+        this.docRef.onSnapshot({ includeMetadataChanges: false }, (snap: firestore.DocumentSnapshot) => {
             CourierService.courier = <Courier>snap.data()
             callback(CourierService.courier);
         }, error => callback(error));
