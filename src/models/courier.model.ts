@@ -14,6 +14,7 @@ export class Courier {
     telefono: number;
     vehiculo: any;
     banned: boolean;
+    
     constructor() {
         this.image = "";
         this.realizando = "";

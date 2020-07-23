@@ -1,4 +1,5 @@
 import { stateOrders } from "~/app/types";
+import { Courier } from "./courier.model";
 
 export interface Orders {
     id?: string;
@@ -7,4 +8,5 @@ export interface Orders {
     recepcion: any;
     solicitante: any;
     encargado: string;
+    infoEncargado?: Courier;
 }

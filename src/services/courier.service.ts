@@ -30,7 +30,7 @@ export class CourierService {
         await this.actualLocation();
         firebase.firestore().batch()
             .update(this.docRef, { realizando: orden.id })
-            .update(orden, { estado: OrderState, encargado: LoginService.codeUser, escogido: this.timeReport() })
+            .update(orden, { estado: OrderState, encargado: LoginService.codeUser, infoEncargado: CourierService.courier, escogido: this.timeReport() })
             .commit()
             .then(() => console.log("Batch successfully committed"))
             .catch(error => console.log(`Batch error: ${error}`));
@@ -76,6 +76,12 @@ export class CourierService {
     }
 
     public static set isDisponible(active: boolean) {
+        const docRef = firebase.firestore().collection("valledupar - CO/mensajeros/lista").doc(LoginService.codeUser);
         AppSettings.setBoolean("_disponible", active);
+        firebase.firestore().batch()
+        .update(docRef, { disponible: active})
+        .commit()
+        .then(() => console.log("Batch successfully committed"))
+        .catch(error => console.log(`Batch error: ${error}`));
     }
 }
